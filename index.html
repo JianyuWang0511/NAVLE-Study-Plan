@@ -1,0 +1,530 @@
+<title>NAVLE Seven-Week Rotation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --paper:#F3F5F1;
+    --panel:#FFFFFF;
+    --ink:#1E2422;
+    --accent:#1F6F63;
+    --accent-ink:#0E3B34;
+    --accent-soft:#DCEAE6;
+    --gold:#B4711F;
+    --gold-soft:#F3E3CD;
+    --line:#D6D9D2;
+    --muted:#5B6560;
+    --shadow: 0 1px 2px rgba(30,36,34,0.05), 0 8px 24px -12px rgba(30,36,34,0.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#121615;
+      --panel:#181D1B;
+      --ink:#E7EAE6;
+      --accent:#5BC9B4;
+      --accent-ink:#CFF3EA;
+      --accent-soft:#1B2E2A;
+      --gold:#E3A85F;
+      --gold-soft:#332617;
+      --line:#2A312D;
+      --muted:#98A29A;
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 12px 28px -14px rgba(0,0,0,0.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#121615;
+    --panel:#181D1B;
+    --ink:#E7EAE6;
+    --accent:#5BC9B4;
+    --accent-ink:#CFF3EA;
+    --accent-soft:#1B2E2A;
+    --gold:#E3A85F;
+    --gold-soft:#332617;
+    --line:#2A312D;
+    --muted:#98A29A;
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 12px 28px -14px rgba(0,0,0,0.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55;
+  }
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:56px 24px 96px;
+  }
+  h1,h2,h3{
+    font-family:"Fraunces", Georgia, serif;
+    text-wrap:balance;
+    font-weight:600;
+    color:var(--ink);
+    margin:0;
+  }
+  .eyebrow{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:12px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    padding-bottom:36px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:40px;
+  }
+  header h1{ font-size:clamp(28px,4vw,40px); }
+  header p.lede{
+    max-width:62ch;
+    color:var(--muted);
+    font-size:16.5px;
+  }
+  .meta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:8px;
+  }
+  .meta-chip{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:12.5px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:100px;
+    padding:6px 14px;
+    color:var(--ink);
+    box-shadow:var(--shadow);
+  }
+  .meta-chip b{ color:var(--accent); font-weight:600; }
+
+  /* ---------- Section headings ---------- */
+  section{ margin-bottom:52px; }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:20px;
+  }
+  .section-head h2{ font-size:22px; }
+  .section-head .count{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:12.5px;
+    color:var(--muted);
+  }
+
+  /* ---------- Methodology ---------- */
+  .method-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+  }
+  .method-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 16px;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .method-card .num{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:12px;
+    color:var(--accent);
+    font-weight:600;
+  }
+  .method-card h3{ font-size:16px; line-height:1.3; }
+  .method-card p{ margin:0; font-size:13.5px; color:var(--muted); }
+
+  /* ---------- Delivery panel ---------- */
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px 26px;
+    box-shadow:var(--shadow);
+  }
+  .panel + .panel{ margin-top:14px; }
+  .panel h3{ font-size:16px; margin-bottom:8px; }
+  .panel p{ margin:0 0 8px; color:var(--muted); font-size:14.5px; }
+  .panel p:last-child{ margin-bottom:0; }
+  .panel .tag{
+    display:inline-block;
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:11.5px;
+    letter-spacing:0.04em;
+    background:var(--accent-soft);
+    color:var(--accent-ink);
+    border-radius:6px;
+    padding:3px 8px;
+    margin-bottom:10px;
+  }
+  .panel .tag.gold{ background:var(--gold-soft); color:var(--gold); }
+
+  /* ---------- Week blocks ---------- */
+  .week{
+    margin-bottom:22px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--panel);
+    box-shadow:var(--shadow);
+  }
+  .week-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 18px;
+    background:var(--accent-soft);
+    border-bottom:1px solid var(--line);
+  }
+  .week-head .wk-label{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    font-weight:600;
+  }
+  .week-head .wk-theme{
+    font-family:"Fraunces", Georgia, serif;
+    font-size:16.5px;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .days{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+  }
+  .day{
+    padding:14px 12px;
+    border-right:1px solid var(--line);
+    border-top:1px solid var(--line);
+    min-height:120px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .day:nth-child(7n){ border-right:none; }
+  .day:nth-child(-n+7){ border-top:none; }
+  .day .dow{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .day .dnum{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:12px;
+    color:var(--accent);
+    font-weight:600;
+  }
+  .day .title{
+    font-size:12.8px;
+    line-height:1.32;
+    color:var(--ink);
+  }
+  .day.sat{ background:var(--gold-soft); }
+  .day.sat .dnum{ color:var(--gold); }
+  .day .badge{
+    margin-top:auto;
+    align-self:flex-start;
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:9.5px;
+    letter-spacing:0.03em;
+    background:var(--gold);
+    color:var(--panel);
+    border-radius:5px;
+    padding:2px 6px;
+  }
+
+  /* ---------- Day-1 preview ---------- */
+  .preview-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:6px;
+  }
+  .preview-outline{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin:14px 0 18px;
+  }
+  .preview-outline .item{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:10px 12px;
+    font-size:13.5px;
+    background:var(--paper);
+  }
+  .preview-outline .item b{ display:block; font-size:12px; color:var(--accent); font-family:"IBM Plex Mono",monospace; margin-bottom:3px; letter-spacing:0.03em;}
+  .qbox{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    background:var(--paper);
+  }
+  .qbox .qn{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:11.5px;
+    color:var(--accent);
+    margin-bottom:5px;
+    display:block;
+  }
+  .qbox p.stem{ margin:0 0 8px; font-size:14px; }
+  .qbox ul{ margin:0; padding-left:0; list-style:none; display:grid; gap:5px;}
+  .qbox li{ font-size:13.3px; color:var(--muted); }
+  .qbox li.correct{ color:var(--accent-ink); font-weight:600; }
+  .qbox .exp{
+    margin-top:8px;
+    padding-top:8px;
+    border-top:1px dashed var(--line);
+    font-size:12.6px;
+    color:var(--muted);
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding-top:22px;
+    font-size:13px;
+    color:var(--muted);
+  }
+  footer a{ color:var(--accent); }
+
+  @media (max-width:720px){
+    .method-grid{ grid-template-columns:repeat(2,1fr); }
+    .preview-outline{ grid-template-columns:1fr; }
+    .days{ grid-template-columns:repeat(7,minmax(90px,1fr)); overflow-x:auto; }
+    .week{ overflow-x:auto; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <span class="eyebrow">NAVLE Preparation &middot; Self-Paced Rotation</span>
+    <h1>Seven-Week NAVLE Study Plan</h1>
+    <p class="lede">One clinical module a day — an outline, the working knowledge behind it, and a 30-question quiz — delivered every evening, with a cumulative exam each Saturday to keep the earlier weeks load-bearing.</p>
+    <div class="meta-row">
+      <span class="meta-chip">Start &nbsp;<b>Mon, Sep 7 2026</b></span>
+      <span class="meta-chip">Finish &nbsp;<b>Sun, Oct 25 2026</b></span>
+      <span class="meta-chip">Delivery &nbsp;<b>8:00 PM ET, daily</b></span>
+      <span class="meta-chip">49 modules &middot; 7 cumulative exams</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <h2>How each day builds skill</h2>
+      <span class="count">4 stages</span>
+    </div>
+    <div class="method-grid">
+      <div class="method-card">
+        <span class="num">01</span>
+        <h3>Outline</h3>
+        <p>The module's scope up front — what it covers and how it fits the NAVLE blueprint — so you know the shape of the material before the detail arrives.</p>
+      </div>
+      <div class="method-card">
+        <span class="num">02</span>
+        <h3>Key information</h3>
+        <p>Concrete, board-relevant explanations: mechanisms, classic presentations, diagnostic pivots, and the treatment logic examiners test — not just a list of facts.</p>
+      </div>
+      <div class="method-card">
+        <span class="num">03</span>
+        <h3>30-question quiz</h3>
+        <p>NAVLE-style case vignettes on that day's module, with an answer key and short explanations, sent the same evening at 8 PM ET.</p>
+      </div>
+      <div class="method-card">
+        <span class="num">04</span>
+        <h3>Saturday exam</h3>
+        <p>Every Saturday, alongside that day's module quiz, a cumulative test pulls questions from everything covered since the start — the retrieval practice that keeps Week 1 alive in Week 7.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Delivery &amp; automation</h2>
+    </div>
+    <div class="panel">
+      <span class="tag">Standing schedule</span>
+      <h3>Arrives on its own, every evening</h3>
+      <p>A daily 8:00 PM Eastern session is already scheduled. It reads the day's place in the plan below, writes that module's outline, key information, and 30-question quiz, and sends it straight to this conversation's history — nothing to trigger by hand.</p>
+      <p>On Saturdays it does that <em>and</em> appends the cumulative exam for everything covered so far that week's cycle.</p>
+    </div>
+    <div class="panel">
+      <span class="tag gold">Housekeeping</span>
+      <h3>Daylight saving</h3>
+      <p>Clocks fall back on Nov 1, 2026. A reminder is scheduled for Oct 31 to shift the automation by an hour so it keeps landing at 8 PM Eastern rather than drifting to 7 PM — no action needed from you.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>The 49-day rotation</h2>
+      <span class="count">7 weeks &middot; Mon–Sun</span>
+    </div>
+
+    <!-- Week 1 -->
+    <div class="week">
+      <div class="week-head"><span class="wk-label">Week 1</span><span class="wk-theme">Foundational sciences</span></div>
+      <div class="days">
+        <div class="day"><span class="dow">Mon</span><span class="dnum">D01</span><span class="title">Comparative normal anatomy &amp; physiology</span></div>
+        <div class="day"><span class="dow">Tue</span><span class="dnum">D02</span><span class="title">General pharmacology, anesthesia &amp; analgesia</span></div>
+        <div class="day"><span class="dow">Wed</span><span class="dnum">D03</span><span class="title">Clinical pathology I — hematology &amp; chemistry</span></div>
+        <div class="day"><span class="dow">Thu</span><span class="dnum">D04</span><span class="title">Clinical pathology II — urinalysis, cytology, coagulation</span></div>
+        <div class="day"><span class="dow">Fri</span><span class="dnum">D05</span><span class="title">Diagnostic imaging — radiology &amp; ultrasound</span></div>
+        <div class="day sat"><span class="dow">Sat</span><span class="dnum">D06</span><span class="title">General surgical principles &amp; wound healing</span><span class="badge">+ cumulative</span></div>
+        <div class="day"><span class="dow">Sun</span><span class="dnum">D07</span><span class="title">Fluid therapy, acid–base &amp; critical care</span></div>
+      </div>
+    </div>
+
+    <!-- Week 2 -->
+    <div class="week">
+      <div class="week-head"><span class="wk-label">Week 2</span><span class="wk-theme">Cardiovascular &amp; respiratory</span></div>
+      <div class="days">
+        <div class="day"><span class="dow">Mon</span><span class="dnum">D08</span><span class="title">Small animal cardiology</span></div>
+        <div class="day"><span class="dow">Tue</span><span class="dnum">D09</span><span class="title">Large animal &amp; equine cardiology</span></div>
+        <div class="day"><span class="dow">Wed</span><span class="dnum">D10</span><span class="title">Small animal respiratory disease</span></div>
+        <div class="day"><span class="dow">Thu</span><span class="dnum">D11</span><span class="title">Large animal respiratory disease (BRD, RAO, pleuropneumonia)</span></div>
+        <div class="day"><span class="dow">Fri</span><span class="dnum">D12</span><span class="title">Cardiorespiratory emergencies, all species</span></div>
+        <div class="day sat"><span class="dow">Sat</span><span class="dnum">D13</span><span class="title">Thoracic diagnostics — rads, echo, thoracocentesis</span><span class="badge">+ cumulative</span></div>
+        <div class="day"><span class="dow">Sun</span><span class="dnum">D14</span><span class="title">Case-based integration: cardiopulmonary</span></div>
+      </div>
+    </div>
+
+    <!-- Week 3 -->
+    <div class="week">
+      <div class="week-head"><span class="wk-label">Week 3</span><span class="wk-theme">GI &amp; hepatobiliary</span></div>
+      <div class="days">
+        <div class="day"><span class="dow">Mon</span><span class="dnum">D15</span><span class="title">Small animal GI disease — V/D workup, FB, pancreatitis</span></div>
+        <div class="day"><span class="dow">Tue</span><span class="dnum">D16</span><span class="title">GDV &amp; acute abdomen, small animal</span></div>
+        <div class="day"><span class="dow">Wed</span><span class="dnum">D17</span><span class="title">Equine colic — diagnosis &amp; management</span></div>
+        <div class="day"><span class="dow">Thu</span><span class="dnum">D18</span><span class="title">Ruminant GI disease — bloat, DA, acidosis</span></div>
+        <div class="day"><span class="dow">Fri</span><span class="dnum">D19</span><span class="title">Hepatobiliary &amp; pancreatic disease, all species</span></div>
+        <div class="day sat"><span class="dow">Sat</span><span class="dnum">D20</span><span class="title">Nutrition &amp; metabolic disease</span><span class="badge">+ cumulative</span></div>
+        <div class="day"><span class="dow">Sun</span><span class="dnum">D21</span><span class="title">Oral &amp; dental disease</span></div>
+      </div>
+    </div>
+
+    <!-- Week 4 -->
+    <div class="week">
+      <div class="week-head"><span class="wk-label">Week 4</span><span class="wk-theme">Musculoskeletal, neurology &amp; ophthalmology</span></div>
+      <div class="days">
+        <div class="day"><span class="dow">Mon</span><span class="dnum">D22</span><span class="title">Small animal orthopedics — fractures, CCL, hip dysplasia</span></div>
+        <div class="day"><span class="dow">Tue</span><span class="dnum">D23</span><span class="title">Equine lameness &amp; musculoskeletal disease</span></div>
+        <div class="day"><span class="dow">Wed</span><span class="dnum">D24</span><span class="title">Food animal musculoskeletal disease — foot rot, laminitis</span></div>
+        <div class="day"><span class="dow">Thu</span><span class="dnum">D25</span><span class="title">Small animal neurology — seizures, IVDD, vestibular</span></div>
+        <div class="day"><span class="dow">Fri</span><span class="dnum">D26</span><span class="title">Large animal neurology — EPM, rabies, listeriosis</span></div>
+        <div class="day sat"><span class="dow">Sat</span><span class="dnum">D27</span><span class="title">Ophthalmology, all species</span><span class="badge">+ cumulative</span></div>
+        <div class="day"><span class="dow">Sun</span><span class="dnum">D28</span><span class="title">Case-based integration: MSK / neuro / ophtho</span></div>
+      </div>
+    </div>
+
+    <!-- Week 5 -->
+    <div class="week">
+      <div class="week-head"><span class="wk-label">Week 5</span><span class="wk-theme">Urinary, endocrine, dermatology &amp; heme</span></div>
+      <div class="days">
+        <div class="day"><span class="dow">Mon</span><span class="dnum">D29</span><span class="title">Small animal renal &amp; urinary disease — AKI/CKD, FLUTD</span></div>
+        <div class="day"><span class="dow">Tue</span><span class="dnum">D30</span><span class="title">Large animal urinary disease — urolithiasis, pyelonephritis</span></div>
+        <div class="day"><span class="dow">Wed</span><span class="dnum">D31</span><span class="title">Endocrinology — DM, thyroid, Cushing's/Addison's, PPID/EMS</span></div>
+        <div class="day"><span class="dow">Thu</span><span class="dnum">D32</span><span class="title">Small animal dermatology — allergic, parasitic, endocrine</span></div>
+        <div class="day"><span class="dow">Fri</span><span class="dnum">D33</span><span class="title">Large animal dermatology &amp; herd skin disease</span></div>
+        <div class="day sat"><span class="dow">Sat</span><span class="dnum">D34</span><span class="title">Hematology &amp; immune-mediated disease — IMHA, ITP</span><span class="badge">+ cumulative</span></div>
+        <div class="day"><span class="dow">Sun</span><span class="dnum">D35</span><span class="title">Oncology principles</span></div>
+      </div>
+    </div>
+
+    <!-- Week 6 -->
+    <div class="week">
+      <div class="week-head"><span class="wk-label">Week 6</span><span class="wk-theme">Theriogenology &amp; neonatology</span></div>
+      <div class="days">
+        <div class="day"><span class="dow">Mon</span><span class="dnum">D36</span><span class="title">Small animal reproduction — pyometra, dystocia</span></div>
+        <div class="day"><span class="dow">Tue</span><span class="dnum">D37</span><span class="title">Equine reproduction — breeding soundness, dystocia</span></div>
+        <div class="day"><span class="dow">Wed</span><span class="dnum">D38</span><span class="title">Bovine reproduction &amp; herd repro management</span></div>
+        <div class="day"><span class="dow">Thu</span><span class="dnum">D39</span><span class="title">Small ruminant &amp; swine reproduction</span></div>
+        <div class="day"><span class="dow">Fri</span><span class="dnum">D40</span><span class="title">Neonatology, all species — FPT, resuscitation</span></div>
+        <div class="day sat"><span class="dow">Sat</span><span class="dnum">D41</span><span class="title">Reproductive &amp; theriogenology emergencies</span><span class="badge">+ cumulative</span></div>
+        <div class="day"><span class="dow">Sun</span><span class="dnum">D42</span><span class="title">Case-based integration: repro / neonatal</span></div>
+      </div>
+    </div>
+
+    <!-- Week 7 -->
+    <div class="week">
+      <div class="week-head"><span class="wk-label">Week 7</span><span class="wk-theme">Infectious disease, public health &amp; wrap-up</span></div>
+      <div class="days">
+        <div class="day"><span class="dow">Mon</span><span class="dnum">D43</span><span class="title">Viral &amp; bacterial disease, dogs/cats — parvo, distemper, FeLV/FIV</span></div>
+        <div class="day"><span class="dow">Tue</span><span class="dnum">D44</span><span class="title">Viral &amp; bacterial disease, large animal/equine — BVD, IBR, EIA, strangles</span></div>
+        <div class="day"><span class="dow">Wed</span><span class="dnum">D45</span><span class="title">Zoonotic disease, public health &amp; food safety</span></div>
+        <div class="day"><span class="dow">Thu</span><span class="dnum">D46</span><span class="title">Toxicology — common toxicants by species</span></div>
+        <div class="day"><span class="dow">Fri</span><span class="dnum">D47</span><span class="title">Animal behavior &amp; exotic/avian/wildlife medicine</span></div>
+        <div class="day sat"><span class="dow">Sat</span><span class="dnum">D48</span><span class="title">Ethics, jurisprudence, welfare &amp; epidemiology</span><span class="badge">+ cumulative</span></div>
+        <div class="day"><span class="dow">Sun</span><span class="dnum">D49</span><span class="title">Final comprehensive practice exam, mixed systems</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Tonight's preview — Day 1 sample</h2>
+      <span class="count">full version arrives Mon 8 PM ET</span>
+    </div>
+    <div class="panel">
+      <div class="preview-head">
+        <span class="tag">D01</span>
+        <h3 style="margin:0;">Comparative Normal Anatomy &amp; Physiology</h3>
+      </div>
+      <p>A refresher across species before the disease-specific weeks begin — where dog, cat, horse, cow, and small ruminant anatomy converge, and where they don't.</p>
+      <div class="preview-outline">
+        <div class="item"><b>Cardiovascular</b>Four-chambered heart layout; ruminant vs. monogastric conduction quirks; species differences in normal HR/RR.</div>
+        <div class="item"><b>GI</b>Simple-stomached vs. ruminant (four-compartment) digestion; equine hindgut fermentation.</div>
+        <div class="item"><b>Renal</b>Nephron structure; species differences in urine concentrating ability and normal USG ranges.</div>
+        <div class="item"><b>Musculoskeletal</b>Axial vs. appendicular landmarks used in physical exam and imaging orientation.</div>
+      </div>
+      <p style="font-size:13.5px;"><b style="color:var(--accent-ink);">Key information, worked example:</b> Ruminants digest via a four-compartment stomach (reticulum, rumen, omasum, abomasum) with microbial fermentation upstream of the true stomach (abomasum) — this is why ruminant drug absorption, gas accumulation (bloat), and forestomach disease patterns differ fundamentally from a dog or cat's single-compartment stomach. The horse instead ferments in an enlarged hindgut (cecum/colon) <em>downstream</em> of a simple stomach, which is why equine colic and dietary carbohydrate overload present so differently from ruminant bloat despite both being "fermentation" problems.</p>
+      <p style="font-size:13.5px; margin-top:10px;">The full Day 1 module — complete outline, key information across all four systems, and the 30-question quiz — is generated automatically tonight. Below is the format it will arrive in.</p>
+    </div>
+
+    <div class="qbox">
+      <span class="qn">Sample Q1 of 30</span>
+      <p class="stem">A ruminant with acute bloat is most likely to have gas trapped due to failure of which process?</p>
+      <ul>
+        <li>A. Abomasal emptying</li>
+        <li class="correct">B. Eructation (belching) reflex</li>
+        <li>C. Rumen absorption of VFAs</li>
+        <li>D. Salivary buffering</li>
+      </ul>
+      <div class="exp"><b>Answer: B.</b> Free-gas bloat results from failure to eructate (e.g., esophageal obstruction, vagal indigestion, or positional issues); frothy bloat instead results from stable foam preventing gas from coalescing enough to be eructated.</div>
+    </div>
+    <div class="qbox">
+      <span class="qn">Sample Q2 of 30</span>
+      <p class="stem">Compared to the dog, the normal feline heart is best characterized on thoracic radiographs by:</p>
+      <ul>
+        <li>A. A more horizontal cardiac axis</li>
+        <li class="correct">B. A more vertical, "valentine-shaped" cardiac silhouette</li>
+        <li>C. A markedly larger cardiac silhouette relative to body size</li>
+        <li>D. Absence of a visible cranial waist</li>
+      </ul>
+      <div class="exp"><b>Answer: B.</b> The feline heart typically sits more vertically in the thorax than the dog's, producing the classic "valentine" silhouette on the VD/DV view — a normal-variant detail worth recognizing before pattern-matching cardiomegaly.</div>
+    </div>
+  </section>
+
+  <footer>
+    Curriculum saved to the <strong>NAVLE Exam</strong> project for reference. Automation runs on its own each evening — no need to revisit this page unless the plan itself needs adjusting.
+  </footer>
+
+</div>
